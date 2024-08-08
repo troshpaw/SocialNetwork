@@ -2,7 +2,24 @@ import './App.css';
 
 const App = () => {
   return (
-    <div className="App">
+    <div>
+      <Header />
+      <Technologies />
+    </div>
+  );
+}
+
+const Header = () => {
+  return (
+    <div>
+      <h4>The Way of the Samurai</h4>
+    </div>
+  );
+}
+
+const Technologies = () => {
+  return (
+    <div>
       <ul>
         <li>HTML</li>
         <li>CSS</li>
