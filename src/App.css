@@ -1,5 +1,12 @@
 .app-wrapper {
   display: grid;
+  margin: 0 auto;
+  width: 1200px;
+
+  grid-template-areas: 
+  "h h"
+  "n c";
+
   grid-template-rows: 60px 1fr;
   grid-template-columns: 2fr 10 fr;
   /* grid-gap: 10px;  */
@@ -7,12 +14,18 @@
 
 .header {
   grid-area: h;
+  background-color: gray;
+}
+.header img {
+  width: 50px;
 }
 
 .nav {
   grid-area: n;
+  background-color: royalblue;
 }
 
 .content {
   grid-area: c;
+  background-color: bisque;
 }
