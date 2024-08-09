@@ -1,3 +1,18 @@
-ul li {
-  list-style-type: lower-greek;
+.app-wrapper {
+  display: grid;
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10 fr;
+  /* grid-gap: 10px;  */
+}
+
+.header {
+  grid-area: h;
+}
+
+.nav {
+  grid-area: n;
+}
+
+.content {
+  grid-area: c;
 }
