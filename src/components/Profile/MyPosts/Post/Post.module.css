@@ -1,3 +1,7 @@
 .item {
-    color: red;
+    color: black;
+}
+
+.item img {
+    height: 50px;
 }

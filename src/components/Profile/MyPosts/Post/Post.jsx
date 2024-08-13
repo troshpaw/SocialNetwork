@@ -1,9 +1,15 @@
 import style from './Post.module.css';
 
-const Post = () => {
+const Post = (props) => {
     return (
         <div className={style.item}>
-            Post
+            <img src='https://i.pinimg.com/736x/71/81/14/7181149979b9cc345415d3b6465b192b.jpg'></img>
+            <div>
+                {props.message}
+            </div>
+            <div>
+                Like: {props.likeCount}
+            </div>
         </div>
     )
 }
