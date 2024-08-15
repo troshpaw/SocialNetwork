@@ -6,17 +6,17 @@
 }
 
 .dialogsItems {
-    padding: 10px;
+    padding: 0px;
 }
 
-.dialogsIitems .active {
+.dialogsItems .active {
     color: red;
 }
 
-.dialog {
+/* .dialog {} */
+
+.messages {
     color: darkslategray;
 }
-
-/* .messages {} */
 
 /* .message {} */
