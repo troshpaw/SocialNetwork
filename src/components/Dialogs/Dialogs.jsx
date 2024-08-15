@@ -1,30 +1,37 @@
 import { NavLink } from 'react-router-dom';
 import styles from './Dialogs.module.css';
 
+const DialogItem = (props) => {
+
+    let path = '/dialogs/' + props.id;
+
+    return (
+        <div className={styles.dialog + ' ' + styles.active}>
+            <NavLink to={path}>{props.name}</NavLink>
+        </div>
+    );
+}
+
+const Message = (props) => {
+    return (
+        <div className={styles.dialog}>{props.message}</div>
+    );
+}
+
 const Dialogs = () => {
     return (
         <div className={styles.dialogs}>
-            <div className={styles.dialogsIitems}>
-                <div className={styles.dialog + ' ' + styles.active}>
-                    <NavLink to='/dialogs/1'>Dimych</NavLink>
-                </div>
-                <div className={styles.dialog}>
-                    <NavLink to='/dialogs/2'>Sveta</NavLink>
-                </div>
-                <div className={styles.dialog}>
-                    <NavLink to='/dialogs/3'>Dmitriy</NavLink>
-                </div>
-                <div className={styles.dialog}>
-                    <NavLink to='/dialogs/4'>Masha</NavLink>
-                </div>
-                <div className={styles.dialog}>
-                    <NavLink to='/dialogs/5'>Victor</NavLink>
-                </div>
+            <div className={styles.dialogsIitems}>               
+                <DialogItem name='Dimych' id='1'/>
+                <DialogItem name='Sveta' id='2'/>
+                <DialogItem name='Alex' id='3'/>
+                <DialogItem name='Masha' id='4'/>
+                <DialogItem name='Victor' id='5'/>
             </div>
             <div className={styles.messages}>
-                <div className={styles.message}>Hello!</div>
-                <div className={styles.message}>How are you?</div>
-                <div className={styles.message}>Bye-bye!</div>
+                <Message message='Hello!'/>
+                <Message message='How are you?'/>
+                <Message message='Bye-bye!'/>
             </div>
         </div>
     );

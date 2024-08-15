@@ -3,8 +3,8 @@ import Post from './Post/Post';
 
 const MyPosts = () => {
     return (
-        <div>
-            My posts
+        <div className={style.postsBlock}>
+            <h3>My posts</h3>
             <div>
                 <div>
                     <textarea></textarea>
@@ -15,7 +15,7 @@ const MyPosts = () => {
             </div>
             <div className={style.posts}>
                 <Post message='Hi, how are you?' likesCount='10' />
-                <Post message="I'am fine!" likesCount='15' />
+                <Post message="This is my first post!" likesCount='15' />
             </div>
         </div>
     )

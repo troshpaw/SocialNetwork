@@ -13,7 +13,9 @@
     color: red;
 }
 
-/* .dialog {} */
+.dialog {
+    color: darkslategray;
+}
 
 /* .messages {} */
 

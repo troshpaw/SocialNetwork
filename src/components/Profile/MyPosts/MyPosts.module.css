@@ -1,3 +1,9 @@
+.postsBlock {
+    padding: 10px;
+}
+
 .posts {
-    background-color: gray;
+    background-color: darkgray;
+    padding: 10px;
+    margin-top: 10px;
 }
