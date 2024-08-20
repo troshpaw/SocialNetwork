@@ -26,7 +26,7 @@ let posts = [
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <App dialogs={dialogs} messages={messages}  posts={posts}/>
   </React.StrictMode>
 );
 
