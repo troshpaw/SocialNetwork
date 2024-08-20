@@ -4,20 +4,6 @@ import styles from './Dialogs.module.css';
 
 const Dialogs = (props) => {
 
-    // let dialogs = [
-    //     { id: 1, name: 'Dimych' },
-    //     { id: 2, name: 'Sveta' },
-    //     { id: 3, name: 'Alex' },
-    //     { id: 4, name: 'Masha' },
-    //     { id: 5, name: 'Victor' }
-    // ];
-
-    // let messages = [
-    //     { id: 1, message: 'Hello!' },
-    //     { id: 2, message: 'How are you?' },
-    //     { id: 3, message: 'Bye-bye!' }
-    // ];
-
     let dialogsElements = props.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id} />);
     let messagesElements = props.messages.map(m => <Message message={m.message} />);
 

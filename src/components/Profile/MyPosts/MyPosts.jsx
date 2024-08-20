@@ -3,13 +3,7 @@ import Post from './Post/Post';
 
 const MyPosts = (props) => {
 
-    // let posts = [
-    //     { id: 1, message: 'Hi, how are you?', likesCount: 10 },
-    //     { id: 2, message: 'This is my first post!', likesCount: 15 },
-    // ];
-
-    let posts = props.posts;
-    let postsElements = posts.map(post => <Post message={post.message} likesCount={post.likesCount} />);
+    let postsElements = props.posts.map(post => <Post message={post.message} likesCount={post.likesCount} />);
 
     return (
         <div className={style.postsBlock}>
