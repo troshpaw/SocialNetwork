@@ -24,15 +24,15 @@ const state = {
     sidebar: {}
 };
 
-export const addPost = (postMessage) => {
+export let addPost = (postMessage) => {
 
-    const post = {
+    let newPost = {
         id: 3,
         message: postMessage,
         likesCount: 0
     };
 
-    state.profilePage.posts.push(post);
+    state.profilePage.posts.push(newPost);
     rerenderEntireTree(state);
 };
 
