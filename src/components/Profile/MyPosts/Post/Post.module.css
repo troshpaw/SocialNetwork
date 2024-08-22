@@ -1,5 +1,9 @@
 .item {
-    color: black;
+    border: 1px solid black;
+    /* border-radius: 10px; */
+    padding: 5px;
+    margin-bottom: 5px;
+    background-color: #C0C0C0;
 }
 
 .item img {
