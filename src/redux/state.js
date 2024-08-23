@@ -20,7 +20,8 @@ const state = {
             { id: 1, message: 'Hello!' },
             { id: 2, message: 'How are you?' },
             { id: 3, message: 'Bye-bye!' }
-        ]
+        ],
+        newMessageText: 'newMessageText'
     },
     sidebar: {}
 }
@@ -40,6 +41,24 @@ export let addPost = () => {
 
 export let updateNewPostText = (newText) => {
     state.profilePage.newPostText = newText;
+    rerenderEntireTree(state);
+}
+
+export let addMessage = () => {
+
+    // let newPost = {
+    //     id: 3,
+    //     message: state.profilePage.newPostText,
+    //     likesCount: 0
+    // };
+
+    // state.profilePage.posts.push(newPost);
+    // state.profilePage.newPostText = '';
+    // rerenderEntireTree(state);
+}
+
+export let updateNewMessageText = (newMessage) => {
+    state.dialogsPage.messages = newMessage;
     rerenderEntireTree(state);
 }
 
