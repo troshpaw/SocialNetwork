@@ -1,6 +1,25 @@
+// import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
 import state from './redux/state'
-import { rerenderEntireTree } from "./render";
+import { addPost, updateNewPostText } from './redux/state';
+import { addMessage, updateNewMessageText } from './redux/state';
 import reportWebVitals from './reportWebVitals';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+let rerenderEntireTree = (state) => {
+    root.render(
+        <App
+            state={state}
+            addPost={addPost}
+            updateNewPostText={updateNewPostText}
+            addMessage={addMessage}
+            updateNewMessageText={updateNewMessageText}
+        />
+    );
+};
 
 rerenderEntireTree(state);
 

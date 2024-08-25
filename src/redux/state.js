@@ -1,5 +1,3 @@
-import { rerenderEntireTree } from "../render";
-
 const state = {
     profilePage: {
         posts: [
@@ -36,12 +34,12 @@ export let addPost = () => {
 
     state.profilePage.posts.push(newPost);
     state.profilePage.newPostText = '';
-    rerenderEntireTree(state);
+    // rerenderEntireTree(state);
 }
 
 export let updateNewPostText = (newText) => {
     state.profilePage.newPostText = newText;
-    rerenderEntireTree(state);
+    // rerenderEntireTree(state);
 }
 
 export let addMessage = () => {
@@ -53,12 +51,12 @@ export let addMessage = () => {
 
     state.dialogsPage.messages.push(newMessage);
     state.dialogsPage.newMessageText = '';
-    rerenderEntireTree(state);
+    // rerenderEntireTree(state);
 }
 
 export let updateNewMessageText = (newMessage) => {
     state.dialogsPage.newMessageText = newMessage;
-    rerenderEntireTree(state);
+    // rerenderEntireTree(state);
 }
 
 export default state;
