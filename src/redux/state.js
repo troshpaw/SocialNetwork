@@ -28,10 +28,10 @@ const state = {
 window.state = state;
 
 // OBSERVER
-let rerenderEntireTree = () => {}
+let callSubscriber = () => { }
 
 export const subscrube = (observer) => {
-    rerenderEntireTree = observer;
+    callSubscriber = observer;
 }
 
 // Manipulation with content
@@ -45,12 +45,12 @@ export let addPost = () => {
 
     state.profilePage.posts.push(newPost);
     state.profilePage.newPostText = '';
-    rerenderEntireTree(state);
+    callSubscriber(state);
 }
 
 export let updateNewPostText = (newText) => {
     state.profilePage.newPostText = newText;
-    rerenderEntireTree(state);
+    callSubscriber(state);
 }
 
 export let addMessage = () => {
@@ -62,12 +62,12 @@ export let addMessage = () => {
 
     state.dialogsPage.messages.push(newMessage);
     state.dialogsPage.newMessageText = '';
-    rerenderEntireTree(state);
+    callSubscriber(state);
 }
 
 export let updateNewMessageText = (newMessage) => {
     state.dialogsPage.newMessageText = newMessage;
-    rerenderEntireTree(state);
+    callSubscriber(state);
 }
 
 export default state;
