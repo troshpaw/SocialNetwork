@@ -1,3 +1,8 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+
 let store = {
 
     _state: {
@@ -69,11 +74,23 @@ let store = {
 
         } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
 
-            this._state.dialogsPage.newMessageText = action.newMessage;
+            this._state.dialogsPage.newMessageText = action.newText;
             this._callSubscriber(this._state);
 
         }
     }
+}
+
+export const addPostActionCreator = () => ({ type: ADD_POST })
+
+export const updateNewPostTextActionCreator = (text) => {
+    return { type: UPDATE_NEW_POST_TEXT, newText: text }
+}
+
+export const addMessageActionCreator = () => ({ type: ADD_MESSAGE })
+
+export const onMessageChangeActionCreator = (text) => {
+    return { type: UPDATE_NEW_MESSAGE_TEXT, newText: text }
 }
 
 export default store;
