@@ -38,7 +38,7 @@ let store = {
         return this._state;
     },
 
-    subscrube(observer) {
+    subscribe(observer) {
         this._callSubscriber = observer;
     },
 
@@ -48,7 +48,7 @@ let store = {
         this._state.profilePage = profileReducer(this._state.profilePage, action);
         this._state.sidebar = sidebarReducer(this._state.sidebar, action);
 
-        this._callSubscriber(this._state);        
+        this._callSubscriber(this._state);
     }
 }
 
