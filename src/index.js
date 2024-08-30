@@ -11,20 +11,16 @@ import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-let rerenderEntireTree = (state) => {
-    root.render(
-        <App
-            state={state}
-            dispatch={store.dispatch.bind(store)}
-        />
-    );
+let rerenderEntireTree = (store) => {
+    root.render(<App store={store} />);
 };
 
-rerenderEntireTree(store.getState());
+rerenderEntireTree(store);
 
 store.subscribe(() => {
-    let state = store.getState();
-    rerenderEntireTree(state);
+    // let state = store.getState();
+    // rerenderEntireTree(state);
+    rerenderEntireTree(store);
 });
 
 
