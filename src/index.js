@@ -2,25 +2,29 @@
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-// import state from './redux/state';
 import store from './redux/redux-store';
-// import { addPost, updateNewPostText } from './redux/state';
-// import { addMessage, updateNewMessageText } from './redux/state';
-// import { subscrube } from './redux/state';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-let rerenderEntireTree = (store) => {
-    root.render(<App store={store} />);
+let rerenderEntireTree = () => {
+    root.render(
+        <BrowserRouter>
+            <Provider store={store}>
+                <App />
+            </Provider>
+        </BrowserRouter>
+    );
 };
 
-rerenderEntireTree(store);
+rerenderEntireTree();
 
 store.subscribe(() => {
     // let state = store.getState();
     // rerenderEntireTree(state);
-    rerenderEntireTree(store);
+    rerenderEntireTree();
 });
 
 
