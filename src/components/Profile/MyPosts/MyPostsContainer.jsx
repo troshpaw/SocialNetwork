@@ -6,18 +6,18 @@ const MyPostsContainer = (props) => {
 
     let state = props.store.getState();
 
-    let onAddPost = () => {
+    let AddPost = () => {
         props.store.dispatch(addPostCreator());
     }
 
-    let onPostChange = (text) => {
+    let updatePostText = (text) => {
         props.store.dispatch(updateNewPostTextCreator(text));
     }
 
     return (
         <MyPosts
-            addPost={onAddPost}
-            updatePost={onPostChange}
+            addPost={AddPost}
+            updatePostText={updatePostText}
             posts={state.profilePage.posts}
             newPostText={state.profilePage.newPostText}
         />
