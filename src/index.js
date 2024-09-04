@@ -21,11 +21,9 @@ let rerenderEntireTree = () => {
 
 rerenderEntireTree();
 
-store.subscribe(() => {
-    // let state = store.getState();
-    // rerenderEntireTree(state);
-    rerenderEntireTree();
-});
+// store.subscribe(() => {
+//     rerenderEntireTree();
+// });
 
 
 // If you want to start measuring performance in your app, pass a function
