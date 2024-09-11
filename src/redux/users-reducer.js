@@ -3,8 +3,9 @@ const UPDATE_USER = 'UPDATE-USER';
 
 let initialState = {
     users: [
-        { id: 1, name: 'Mike', surname: 'Walker' },
-        { id: 2, name: 'John', surname: 'Deer' },
+        { id: 1, followed: false, fullName: 'Mike Walker', status: 'This is my status!', location: {city:'Minsk', country: 'Balarus' }},
+        { id: 2, followed: true, fullName: 'John Jameson', status: 'This is my status!', location: {city:'Moscow', country: 'Russia' }},
+        { id: 3, followed: false, fullName: 'Tony Stark', status: 'This is my status!', location: {city:'New York', country: 'USA' }}
     ]
 };
 
