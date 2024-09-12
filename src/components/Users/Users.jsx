@@ -1,7 +1,11 @@
-const Users = () => {
+const Users = (props) => {
     return (
-        <div>Users</div>
-    );
+        <div>
+            {
+                props.users.map(user => user)
+            }
+        </div>
+    )
 }
 
 export default Users;
