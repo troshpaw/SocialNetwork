@@ -25,9 +25,9 @@ const Users = (props) => {
     return (
         <div>
             {props.users.map(user =>
-                <div key={user.id}>
-                    <div>
-                        <div className={styles.usersPhoto}>
+                <div key={user.id} className={styles.userContainer}>
+                    <div className={styles.userInfo}>
+                        <div>
                             <img src={user.photoUrl} />
                         </div>
                         <div>
@@ -37,7 +37,7 @@ const Users = (props) => {
                             }
                         </div>
                     </div>
-                    <div>
+                    <div className={styles.userDetails}>
                         <div>{user.fullName}</div>
                         <div>{user.status}</div>
                         <div>

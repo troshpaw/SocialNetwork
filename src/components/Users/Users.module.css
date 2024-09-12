@@ -1,3 +1,21 @@
-.usersPhoto img {
+.userContainer {
+    display: flex; /* Основной стиль для горизонтального расположения */
+    gap: 10px; /* Расстояние между элементами, можно настроить */
+    padding: 10px; /* Внутренний отступ для лучшего отображения */
+    border-bottom: 1px solid #ccc; /* Линия для отделения пользователей */
+}
+
+.userInfo {
+    display: flex; /* Размещение фото и кнопок рядом */
+    flex-direction: column; /* Расположить фото и кнопку вертикально */
+    align-items: center; /* Выравнивание по центру */
+}
+
+.userDetails {
+    display: flex;
+    flex-direction: column;
+}
+
+.userContainer img {
     height: 100px;
 }
