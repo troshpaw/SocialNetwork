@@ -3,23 +3,10 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
 
 let initialState = {
-    users: [
-        // {
-        //     id: 1, photoUrl: 'https://i.pinimg.com/originals/1f/28/c6/1f28c68d2c35f389966b5a363b992d06.png',
-        //     followed: false, fullName: 'Mike Walker', status: 'This is my status!',
-        //     location: { city: 'Minsk', country: 'Balarus' }
-        // },
-        // {
-        //     id: 2, photoUrl: 'https://i.pinimg.com/originals/1f/28/c6/1f28c68d2c35f389966b5a363b992d06.png',
-        //     followed: true, fullName: 'John Jameson', status: 'This is my status!',
-        //     location: { city: 'Moscow', country: 'Russia' }
-        // },
-        // {
-        //     id: 3, photoUrl: 'https://i.pinimg.com/originals/1f/28/c6/1f28c68d2c35f389966b5a363b992d06.png',
-        //     followed: false, fullName: 'Tony Stark', status: 'This is my status!',
-        //     location: { city: 'New York', country: 'USA' }
-        // }
-    ]
+    users: [],
+    countUsers: 5,
+    countPages: 5,
+    currentPage: 1
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -47,7 +34,8 @@ const usersReducer = (state = initialState, action) => {
             };
 
         case SET_USERS:
-            return { ...state, users: [...state.users, ...action.users] };
+            // return { ...state, users: [...state.users, ...action.users] };
+            return { ...state, users: [...action.users] };
 
         default:
             return state;
