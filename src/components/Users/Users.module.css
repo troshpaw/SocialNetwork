@@ -19,3 +19,7 @@
 .userContainer img {
     height: 100px;
 }
+
+.currentPage {
+    font-weight: bold;
+}
