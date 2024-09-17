@@ -37,27 +37,26 @@ class Users extends React.Component {
 
         let pages = [];
         let totalPagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
-        
-        // debugger
-        
-        if (this.props.currentPage <= 5) {
-            for (let i = 1; i < 10; i++) {
-                pages.push(i);
+
+        if (totalPagesCount !== 0) {
+
+            if (this.props.currentPage <= 5) {
+                for (let i = 1; i < 10; i++) {
+                    pages.push(i);
+                }
+            }
+            else if ((this.props.currentPage > 5) && (this.props.currentPage <= totalPagesCount - 4)) {
+                for (let i = this.props.currentPage - 4; i < this.props.currentPage + 5; i++) {
+                    pages.push(i);
+                }
+            }
+            else if (this.props.currentPage > totalPagesCount - 5) {
+                for (let i = totalPagesCount - 8; i <= totalPagesCount; i++) {
+                    pages.push(i);
+                }
             }
         }
-        else if ((this.props.currentPage > 5) && (this.props.currentPage <= totalPagesCount - 4)) {
-            for (let i = this.props.currentPage - 4; i < this.props.currentPage + 5; i++) {
-                pages.push(i);
-            }
-        }
-        else if (this.props.currentPage > totalPagesCount - 5) {
-            for (let i = totalPagesCount - 8; i <= totalPagesCount; i++) {
-                pages.push(i);
-            }
-        }
-        
-        // debugger
-        
+
         return (
             <div>
                 <div>
