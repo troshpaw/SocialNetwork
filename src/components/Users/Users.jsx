@@ -1,59 +1,27 @@
 import React from 'react';
-import axios from 'axios';
 import styles from './Users.module.css';
 import userPhoto from './../../assets/images/user.png';
 
-class Users extends React.Component {
+const Users = (props) => {
 
-    // constructor(props) {
-    //     super(props);
-    // }
+    let pages = [];
+    let totalPagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
-    componentDidMount() {
+    if (totalPagesCount !== 0) {
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`)
-            .then(response => {
-                this.props.setUsers(response.data.items);
-                this.props.setTotalUsersCount(response.data.totalCount);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }
-
-    onPageChanged(pageNumber) {
-        this.props.setCurrentPage(pageNumber);
-
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`)
-            .then(response => {
-                this.props.setUsers(response.data.items);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    };
-
-    render() {
-
-        let pages = [];
-        let totalPagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
-
-        if (totalPagesCount !== 0) {
-
-            if (this.props.currentPage <= 5) {
-                for (let i = 1; i < 10; i++) {
-                    pages.push(i);
-                }
+        if (props.currentPage <= 5) {
+            for (let i = 1; i < 10; i++) {
+                pages.push(i);
             }
-            else if ((this.props.currentPage > 5) && (this.props.currentPage <= totalPagesCount - 4)) {
-                for (let i = this.props.currentPage - 4; i < this.props.currentPage + 5; i++) {
-                    pages.push(i);
-                }
+        }
+        else if ((props.currentPage > 5) && (props.currentPage <= totalPagesCount - 4)) {
+            for (let i = props.currentPage - 4; i < props.currentPage + 5; i++) {
+                pages.push(i);
             }
-            else if (this.props.currentPage > totalPagesCount - 5) {
-                for (let i = totalPagesCount - 8; i <= totalPagesCount; i++) {
-                    pages.push(i);
-                }
+        }
+        else if (props.currentPage > totalPagesCount - 5) {
+            for (let i = totalPagesCount - 8; i <= totalPagesCount; i++) {
+                pages.push(i);
             }
         }
 
@@ -61,13 +29,17 @@ class Users extends React.Component {
             <div>
                 <div>
                     {pages.map(page => {
-                        return <span className={page === this.props.currentPage ? styles.currentPage : undefined}>
-                            <span onClick={(event) => { this.onPageChanged(page) }}> {page} </span>
+                        return <span
+                            className={page === props.currentPage ? styles.currentPage : undefined}
+                            onClick={(event) => {
+                                props.onPageChanged(page)
+                            }}>
+                            &nbsp;{page}&nbsp;
                         </span>
                     })}
                 </div>
                 <div>
-                    {this.props.users.map(user =>
+                    {props.users.map(user =>
                         <div key={user.id} className={styles.userContainer}>
                             <div className={styles.userInfo}>
                                 <div>
@@ -78,8 +50,8 @@ class Users extends React.Component {
                                 </div>
                                 <div>
                                     {user.followed
-                                        ? <button onClick={() => { this.props.unfollow(user.id) }}>Unfollow</button>
-                                        : <button onClick={() => { this.props.follow(user.id) }}>Follow</button>
+                                        ? <button onClick={() => { props.unfollow(user.id) }}>Unfollow</button>
+                                        : <button onClick={() => { props.follow(user.id) }}>Follow</button>
                                     }
                                 </div>
                             </div>
