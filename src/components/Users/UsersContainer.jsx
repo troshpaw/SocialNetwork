@@ -3,7 +3,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import Users from "./Users";
 import { follow, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching, unfollow } from "../../redux/users-reducer";
-import Reloader from "../common/Reloader/Reloader";
+import Preloader from "../common/Preloader/Preloader";
 
 class UsersContainer extends React.Component {
 
@@ -42,7 +42,7 @@ class UsersContainer extends React.Component {
 
     render() {
         return <>
-            {this.props.isFetching === true ? <Reloader /> : null}
+            {this.props.isFetching === true ? <Preloader /> : null}
             <Users
                 users={this.props.users}
                 pageSize={this.props.pageSize}
