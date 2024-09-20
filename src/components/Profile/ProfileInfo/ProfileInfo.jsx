@@ -1,5 +1,6 @@
 import styles from './ProfileInfo.module.css';
 import Preloader from '../../common/Preloader/Preloader';
+import userPhoto from '../../../assets/images/user.png';
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -12,8 +13,8 @@ const ProfileInfo = (props) => {
                 <img src='https://res.cloudinary.com/whydonate/image/upload/v1/whydonate-production/user/fundraiser-background/d4cc3696-7a77-11e9-81ee-419f95339d87_rsez7s'></img>
             </div>
             <div className={styles.descriptionBlock}>
-                <div><img src={props.profile.photos.small} /></div>
-                <div>{props.profile.aboutMe}</div>
+                <div><img src={props.profile.photos.large ? props.profile.photos.large : userPhoto} /></div>
+                <div>{props.profile.userId}</div>
             </div>
         </div>
     );

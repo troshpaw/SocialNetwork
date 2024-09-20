@@ -60,7 +60,7 @@ const Users = (props) => {
                             </div>
                             <div className={styles.userDetails}>
                                 <div>{user.name}</div>
-                                <div>{user.status}</div>
+                                <div>{user.id}</div>
                                 <div>
                                     <div>"user.location.country"</div>
                                     <div>"user.location.city"</div>
