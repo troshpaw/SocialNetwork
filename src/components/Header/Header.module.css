@@ -1,8 +1,22 @@
 .header {
     grid-area: h;
+
+    display: flex; 
+    align-items: center;
+    padding: 10px; 
     background-color: #4169E1;
 }
-  .header img {
-    width: 40px;
-    padding: 10px;
+
+.header img {
+    height: 40px;
+}
+
+.authUser {
+  margin-left: auto;
+}
+
+.authUser a {
+  text-decoration: none;
+  color: #000; 
+  font-weight: bold;
 }

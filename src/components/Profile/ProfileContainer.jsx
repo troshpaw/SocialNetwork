@@ -8,7 +8,8 @@ import { useParams } from "react-router-dom";
 class ProfileContainer extends React.Component {
     componentDidMount() {
         let userId = this.props.match.params.userId;
-        if (!userId) { userId = 2; }
+        if (!userId) { userId = 31675 }
+        // if (!userId) { userId = this.props.userLoginId }
 
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
             .then(response => {
@@ -23,7 +24,8 @@ class ProfileContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        profile: state.profilePage.profile
+        profile: state.profilePage.profile,
+        // userLoginId: state.auth.userId
     }
 }
 
