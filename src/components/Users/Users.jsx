@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import styles from './Users.module.css';
 import userPhoto from './../../assets/images/user.png';
 import { NavLink } from 'react-router-dom';
@@ -53,8 +54,30 @@ const Users = (props) => {
                                 </div>
                                 <div>
                                     {user.followed
-                                        ? <button onClick={() => { props.unfollow(user.id) }}>Unfollow</button>
-                                        : <button onClick={() => { props.follow(user.id) }}>Follow</button>
+                                        ? <button onClick={() => {
+                                            axios.delete(`https://social-network.samuraijs.com/api/1.0//follow/${user.id}`, {
+                                                withCredentials: true,
+                                                headers: { 'API-KEY': '5fecb391-77e3-4aa5-967c-e7b1ceb9c36f' }
+                                            })
+                                                .then(response => {
+                                                    if (response.data.resultCode === 0) {
+                                                        props.unfollow(user.id)
+                                                    }
+                                                })
+                                        }
+                                        }>Unfollow</button>
+                                        : <button onClick={() => {
+                                            axios.post(`https://social-network.samuraijs.com/api/1.0//follow/${user.id}`, {}, {
+                                                withCredentials: true,
+                                                headers: { 'API-KEY': '5fecb391-77e3-4aa5-967c-e7b1ceb9c36f' }
+                                            })
+                                                .then(response => {
+                                                    if (response.data.resultCode === 0) {
+                                                        props.follow(user.id)
+                                                    }
+                                                })
+                                        }
+                                        }>Follow</button>
                                     }
                                 </div>
                             </div>
@@ -69,7 +92,7 @@ const Users = (props) => {
                         </div>
                     )}
                 </div>
-            </div>
+            </div >
         )
     }
 }
