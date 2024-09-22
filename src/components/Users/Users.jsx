@@ -1,8 +1,8 @@
 import React from 'react';
-import axios from 'axios';
 import styles from './Users.module.css';
 import userPhoto from './../../assets/images/user.png';
 import { NavLink } from 'react-router-dom';
+import { subscriptionAPI } from '../../API/api';
 
 const Users = (props) => {
 
@@ -55,24 +55,26 @@ const Users = (props) => {
                                 <div>
                                     {user.followed
                                         ? <button onClick={() => {
-                                            axios.delete(`https://social-network.samuraijs.com/api/1.0//follow/${user.id}`, {
-                                                withCredentials: true,
-                                                headers: { 'API-KEY': '5fecb391-77e3-4aa5-967c-e7b1ceb9c36f' }
-                                            })
-                                                .then(response => {
-                                                    if (response.data.resultCode === 0) {
+                                            // axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
+                                            //     withCredentials: true,
+                                            //     headers: { 'API-KEY': '5fecb391-77e3-4aa5-967c-e7b1ceb9c36f' }
+                                            // })
+                                            subscriptionAPI.unfollow(user.id)
+                                                .then(data => {
+                                                    if (data.resultCode === 0) {
                                                         props.unfollow(user.id)
                                                     }
                                                 })
                                         }
                                         }>Unfollow</button>
                                         : <button onClick={() => {
-                                            axios.post(`https://social-network.samuraijs.com/api/1.0//follow/${user.id}`, {}, {
-                                                withCredentials: true,
-                                                headers: { 'API-KEY': '5fecb391-77e3-4aa5-967c-e7b1ceb9c36f' }
-                                            })
-                                                .then(response => {
-                                                    if (response.data.resultCode === 0) {
+                                            // axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
+                                            //     withCredentials: true,
+                                            //     headers: { 'API-KEY': '5fecb391-77e3-4aa5-967c-e7b1ceb9c36f' }
+                                            // })
+                                            subscriptionAPI.follow(user.id)
+                                                .then(data => {
+                                                    if (data.resultCode === 0) {
                                                         props.follow(user.id)
                                                     }
                                                 })

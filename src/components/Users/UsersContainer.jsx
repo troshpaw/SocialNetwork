@@ -1,9 +1,10 @@
 import React from "react";
-import axios from "axios";
+// import axios from "axios";
 import { connect } from "react-redux";
 import Users from "./Users";
 import { follow, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching, unfollow } from "../../redux/users-reducer";
 import Preloader from "../common/Preloader/Preloader";
+import { usersAPI } from "../../API/api";
 
 class UsersContainer extends React.Component {
 
@@ -14,34 +15,29 @@ class UsersContainer extends React.Component {
     componentDidMount() {
         this.props.toggleIsFetching(true);
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`, {
-            withCredentials: true
-        })
-            .then(response => {
+        // axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`, {
+        //     withCredentials: true
+        // })
+        usersAPI.getUsers(this.props.pageSize, this.props.currentPage)
+            .then(data => {
                 this.props.toggleIsFetching(false);
-                this.props.setUsers(response.data.items);
-                this.props.setTotalUsersCount(response.data.totalCount);
+                this.props.setUsers(data.items);
+                this.props.setTotalUsersCount(data.totalCount);
             })
-            .catch(error => {
-                console.log(error);
-            });
     }
 
     onPageChanged = (pageNumber) => {
         this.props.setCurrentPage(pageNumber);
-
         this.props.toggleIsFetching(true);
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`, {
-            withCredentials: true
-        })
-            .then(response => {
+        // axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`, {
+        //     withCredentials: true
+        // })
+        usersAPI.getUsers(this.props.pageSize, pageNumber)
+            .then(data => {
                 this.props.toggleIsFetching(false);
-                this.props.setUsers(response.data.items);
+                this.props.setUsers(data.items);
             })
-            .catch(error => {
-                console.log(error);
-            });
     };
 
     render() {
