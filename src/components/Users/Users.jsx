@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom';
 import { subscriptionAPI } from '../../API/api';
 
 const Users = (props) => {
-
     let pages = [];
     let totalPagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
@@ -54,29 +53,34 @@ const Users = (props) => {
                                 </div>
                                 <div>
                                     {user.followed
-                                        ? <button onClick={() => {
+                                        ? <button disabled={props.folowingInProgress} onClick={() => {
                                             // axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
                                             //     withCredentials: true,
                                             //     headers: { 'API-KEY': '5fecb391-77e3-4aa5-967c-e7b1ceb9c36f' }
                                             // })
+                                            props.toggleIsFolowingProgress(true);
                                             subscriptionAPI.unfollow(user.id)
                                                 .then(data => {
                                                     if (data.resultCode === 0) {
                                                         props.unfollow(user.id)
                                                     }
+                                                    props.toggleIsFolowingProgress(false);
+
                                                 })
                                         }
                                         }>Unfollow</button>
-                                        : <button onClick={() => {
+                                        : <button disabled={props.folowingInProgress} onClick={() => {
                                             // axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
                                             //     withCredentials: true,
                                             //     headers: { 'API-KEY': '5fecb391-77e3-4aa5-967c-e7b1ceb9c36f' }
                                             // })
+                                            props.toggleIsFolowingProgress(true);
                                             subscriptionAPI.follow(user.id)
                                                 .then(data => {
                                                     if (data.resultCode === 0) {
                                                         props.follow(user.id)
                                                     }
+                                                    props.toggleIsFolowingProgress(false);
                                                 })
                                         }
                                         }>Follow</button>
