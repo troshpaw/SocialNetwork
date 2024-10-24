@@ -2,9 +2,18 @@ import React from "react";
 // import axios from "axios";
 import { connect } from "react-redux";
 import Users from "./Users";
-import { follow, unfollow, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching, toggleIsFolowingProgress } from "../../redux/users-reducer";
+import {
+    follow,
+    unfollow,
+    // setCurrentPage,
+    // setTotalUsersCount,
+    // setUsers,
+    // toggleIsFetching,
+    // toggleIsFolowingProgress,
+    getUsers
+} from "../../redux/users-reducer";
 import Preloader from "../common/Preloader/Preloader";
-import { usersAPI } from "../../API/api";
+// import { usersAPI } from "../../API/api";
 
 class UsersContainer extends React.Component {
 
@@ -13,31 +22,36 @@ class UsersContainer extends React.Component {
     // }
 
     componentDidMount() {
-        this.props.toggleIsFetching(true);
+        // this.props.toggleIsFetching(true);
 
         // axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`, {
         //     withCredentials: true
         // })
-        usersAPI.getUsers(this.props.pageSize, this.props.currentPage)
-            .then(data => {
-                this.props.toggleIsFetching(false);
-                this.props.setUsers(data.items);
-                this.props.setTotalUsersCount(data.totalCount);
-            })
+
+        // usersAPI.getUsers(this.props.pageSize, this.props.currentPage)
+        //     .then(data => {
+        //         this.props.toggleIsFetching(false);
+        //         this.props.setUsers(data.items);
+        //         this.props.setTotalUsersCount(data.totalCount);
+        //     })
+
+        this.props.getUsers(this.props.pageSize, this.props.currentPage);
     }
 
     onPageChanged = (pageNumber) => {
-        this.props.setCurrentPage(pageNumber);
-        this.props.toggleIsFetching(true);
+        // this.props.setCurrentPage(pageNumber);
+        // this.props.toggleIsFetching(true);
 
         // axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`, {
         //     withCredentials: true
         // })
-        usersAPI.getUsers(this.props.pageSize, pageNumber)
-            .then(data => {
-                this.props.toggleIsFetching(false);
-                this.props.setUsers(data.items);
-            })
+        // usersAPI.getUsers(this.props.pageSize, pageNumber)
+        //     .then(data => {
+        //         this.props.toggleIsFetching(false);
+        //         this.props.setUsers(data.items);
+        //     })
+
+        this.props.getUsers(this.props.pageSize, pageNumber);
     };
 
     render() {
@@ -94,5 +108,14 @@ let mapStateToProps = (state) => {
 
 export default connect(
     mapStateToProps,
-    { follow, unfollow, setUsers, setTotalUsersCount, setCurrentPage, toggleIsFetching, toggleIsFolowingProgress }
+    {
+        follow, 
+        unfollow, 
+        // setUsers, 
+        // setTotalUsersCount, 
+        // setCurrentPage, 
+        // toggleIsFetching, 
+        // toggleIsFolowingProgress,
+        getUsers
+    }
 )(UsersContainer);

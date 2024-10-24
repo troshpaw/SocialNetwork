@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Users.module.css';
 import userPhoto from './../../assets/images/user.png';
 import { NavLink } from 'react-router-dom';
-import { usersAPI } from '../../API/api';
+// import { usersAPI } from '../../API/api';
 
 const Users = (props) => {
     let pages = [];
@@ -58,14 +58,17 @@ const Users = (props) => {
                                             //     withCredentials: true,
                                             //     headers: { 'API-KEY': '5fecb391-77e3-4aa5-967c-e7b1ceb9c36f' }
                                             // })
-                                            props.toggleIsFolowingProgress(true, user.id);
-                                            usersAPI.unfollow(user.id)
-                                                .then(data => {
-                                                    if (data.resultCode === 0) {
-                                                        props.unfollow(user.id)
-                                                    }
-                                                    props.toggleIsFolowingProgress(false, user.id);
-                                                })
+                                            
+                                            // props.toggleIsFolowingProgress(true, user.id);
+                                            // usersAPI.unfollow(user.id)
+                                            //     .then(data => {
+                                            //         if (data.resultCode === 0) {
+                                            //             props.unfollow(user.id)
+                                            //         }
+                                            //         props.toggleIsFolowingProgress(false, user.id);
+                                            //     })
+
+                                            props.unfollow(user.id);
                                         }
                                         }>Unfollow</button>
                                         : <button disabled={props.folowingInProgress.some(id => id === user.id)} onClick={() => {
@@ -73,14 +76,17 @@ const Users = (props) => {
                                             //     withCredentials: true,
                                             //     headers: { 'API-KEY': '5fecb391-77e3-4aa5-967c-e7b1ceb9c36f' }
                                             // })
-                                            props.toggleIsFolowingProgress(true, user.id);
-                                            usersAPI.follow(user.id)
-                                                .then(data => {
-                                                    if (data.resultCode === 0) {
-                                                        props.follow(user.id)
-                                                    }
-                                                    props.toggleIsFolowingProgress(false, user.id);
-                                                })
+                                            
+                                            // props.toggleIsFolowingProgress(true, user.id);
+                                            // usersAPI.follow(user.id)
+                                            //     .then(data => {
+                                            //         if (data.resultCode === 0) {
+                                            //             props.follow(user.id)
+                                            //         }
+                                            //         props.toggleIsFolowingProgress(false, user.id);
+                                            //     })
+
+                                            props.follow(user.id);
                                         }
                                         }>Follow</button>
                                     }
