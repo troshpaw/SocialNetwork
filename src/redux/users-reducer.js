@@ -76,7 +76,7 @@ export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, curren
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 export const toggleIsFolowingProgress = (isFetching, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId });
 
-// Thunk creators: follow, unfollow
+// Thunk creators:
 export const getUsers = (pageSize, currentPage) => {
     return (dispatch) => {
         dispatch(setCurrentPage(currentPage));

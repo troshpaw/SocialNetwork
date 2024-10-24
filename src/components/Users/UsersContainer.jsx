@@ -2,6 +2,7 @@ import React from "react";
 // import axios from "axios";
 import { connect } from "react-redux";
 import Users from "./Users";
+
 import {
     follow,
     unfollow,
@@ -12,6 +13,7 @@ import {
     // toggleIsFolowingProgress,
     getUsers
 } from "../../redux/users-reducer";
+
 import Preloader from "../common/Preloader/Preloader";
 // import { usersAPI } from "../../API/api";
 
