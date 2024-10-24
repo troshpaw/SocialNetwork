@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Users.module.css';
 import userPhoto from './../../assets/images/user.png';
 import { NavLink } from 'react-router-dom';
-import { subscriptionAPI } from '../../API/api';
+import { usersAPI } from '../../API/api';
 
 const Users = (props) => {
     let pages = [];
@@ -59,7 +59,7 @@ const Users = (props) => {
                                             //     headers: { 'API-KEY': '5fecb391-77e3-4aa5-967c-e7b1ceb9c36f' }
                                             // })
                                             props.toggleIsFolowingProgress(true, user.id);
-                                            subscriptionAPI.unfollow(user.id)
+                                            usersAPI.unfollow(user.id)
                                                 .then(data => {
                                                     if (data.resultCode === 0) {
                                                         props.unfollow(user.id)
@@ -74,7 +74,7 @@ const Users = (props) => {
                                             //     headers: { 'API-KEY': '5fecb391-77e3-4aa5-967c-e7b1ceb9c36f' }
                                             // })
                                             props.toggleIsFolowingProgress(true, user.id);
-                                            subscriptionAPI.follow(user.id)
+                                            usersAPI.follow(user.id)
                                                 .then(data => {
                                                     if (data.resultCode === 0) {
                                                         props.follow(user.id)
