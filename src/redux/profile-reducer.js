@@ -1,9 +1,10 @@
-import { usersAPI } from "../api/api";
+import { usersAPI, profileAPI } from "../api/api";
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_USER_STATUS = 'SET_USER_STATUS';
+const UPDATE_USER_STATUS = 'UPDATE_USER_STATUS';
 
 let initialState = {
     posts: [
@@ -35,6 +36,9 @@ const profileReducer = (state = initialState, action) => {
         case SET_USER_STATUS:
             return { ...state, status: action.status };
 
+        case UPDATE_USER_STATUS:
+            return { ...state, status: action.status };
+
         default:
             return state;
     }
@@ -51,6 +55,8 @@ export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
 
 export const setUserStatus = (status) => ({ type: SET_USER_STATUS, status });
 
+export const updateUserStatus = (status) => ({ type: UPDATE_USER_STATUS, status });
+
 // Thunk creators:
 export const getProfile = (userId) => {
     return (dispatch) => {
@@ -62,11 +68,21 @@ export const getProfile = (userId) => {
 }
 
 export const getStatus = (userId) => {
-    return(dispatch) => {
+    return (dispatch) => {
         usersAPI.getStatus(userId)
             .then(data => {
                 dispatch(setUserStatus(data))
             })
+    }
+}
+
+export const updateStatus = (status) => {
+    return (dispatch) => {
+        profileAPI.updateStatus(status)
+        // .then(data => {
+        //     dispatch(updateUserStatus(data))
+        // })
+        dispatch(updateUserStatus(status)) // сделать проверку
     }
 }
 
