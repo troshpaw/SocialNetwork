@@ -17,7 +17,6 @@ class ProfileStatus extends React.Component {
 
     onStatusChange = (e) => {
         this.setState({ userStatus: e.target.value })
-        console.log('onStatusChange');
     }
 
     render() {
