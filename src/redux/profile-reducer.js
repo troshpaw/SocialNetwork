@@ -4,16 +4,15 @@ const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_USER_STATUS = 'SET_USER_STATUS';
-const UPDATE_USER_STATUS = 'UPDATE_USER_STATUS';
 
 let initialState = {
     posts: [
         { id: 1, message: 'Hi, how are you?', likesCount: 10 },
         { id: 2, message: 'This is my first post!', likesCount: 15 }
     ],
-    newPostText: '',
+    newPostText: "",
     profile: null,
-    status: null
+    status: ""
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -36,9 +35,6 @@ const profileReducer = (state = initialState, action) => {
         case SET_USER_STATUS:
             return { ...state, status: action.status };
 
-        case UPDATE_USER_STATUS:
-            return { ...state, status: action.status };
-
         default:
             return state;
     }
@@ -55,14 +51,12 @@ export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
 
 export const setUserStatus = (status) => ({ type: SET_USER_STATUS, status });
 
-export const updateUserStatus = (status) => ({ type: UPDATE_USER_STATUS, status });
-
 // Thunk creators:
 export const getProfile = (userId) => {
     return (dispatch) => {
         usersAPI.getProfile(userId)
             .then(data => {
-                dispatch(setUserProfile(data))
+                dispatch(setUserProfile(data));
             })
     }
 }
@@ -70,19 +64,23 @@ export const getProfile = (userId) => {
 export const getStatus = (userId) => {
     return (dispatch) => {
         usersAPI.getStatus(userId)
-            .then(data => {
-                dispatch(setUserStatus(data))
+            .then(response => {
+                dispatch(setUserStatus(response.data));
             })
+        console.log('getStatus');
     }
 }
 
 export const updateStatus = (status) => {
     return (dispatch) => {
         profileAPI.updateStatus(status)
-        // .then(data => {
-        //     dispatch(updateUserStatus(data))
-        // })
-        dispatch(updateUserStatus(status)) // сделать проверку
+            .then(response => {
+                if (response.data.rezultCode === 0) {
+                    dispatch(setUserStatus(status));
+                }
+            })
+        console.log('updateStatus');
+
     }
 }
 

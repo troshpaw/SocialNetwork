@@ -3,33 +3,21 @@ import React from "react";
 class ProfileStatus extends React.Component {
     state = {
         editMode: false,
-        userStatus: null
+        userStatus: this.props.status
     }
 
     activateEditMode = () => {
-        // this.state.editMode = true
-        this.setState({
-            editMode: true,
-            userStatus: this.props.status
-        });
+        this.setState({ editMode: true });
     }
 
     deactivateEditMode = () => {
-        // this.state.editMode = false
         this.setState({ editMode: false });
+        this.props.updateStatus(this.state.userStatus);
     }
 
-    // componentDidMount() {
-    //     console.log(this.props.updateStatus);
-    // }
-
-    updateLocalUserStatus = (e) => {
-        let status = e.target.value;
-        this.setState({ userStatus: status })
-    }
-
-    updateServerUserStatus = (status) => {
-        this.props.updateStatus(status);
+    onStatusChange = (e) => {
+        this.setState({ userStatus: e.target.value })
+        console.log('onStatusChange');
     }
 
     render() {
@@ -43,10 +31,7 @@ class ProfileStatus extends React.Component {
 
                 {this.state.editMode &&
                     <div>
-                        {/* <input onChange={this.updateLocalUserStatus} autoFocus={true} onBlur={this.deactivateEditMode} value={this.state.userStatus} /> */}
-                        <input onChange={this.updateLocalUserStatus} autoFocus={true} value={this.state.userStatus} />
-                        <button onClick={this.deactivateEditMode}>Отменить</button>
-                        <button onClick={() => { this.updateServerUserStatus(this.state.userStatus); this.deactivateEditMode() }}>Сохранить</button>
+                        <input onChange={this.onStatusChange} autoFocus={true} onBlur={this.deactivateEditMode} value={this.state.userStatus} />
                     </div>
                 }
             </div>
