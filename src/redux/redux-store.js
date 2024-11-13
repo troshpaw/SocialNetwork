@@ -5,6 +5,7 @@ import profileReducer from "./profile-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import usersReducer from "./users-reducer";
 import authReducer from "./auth-reducer";
+import { reducer as formReducer } from 'redux-form'
 
 // let reducers = combineReducers({
 //     dialogsPage: dialogsReducer,
@@ -20,7 +21,8 @@ const store = configureStore({
         profilePage: profileReducer,
         usersPage: usersReducer,
         sidebar: sidebarReducer,
-        auth: authReducer
+        auth: authReducer,
+        form: formReducer
     }
 });
 
