@@ -44,27 +44,26 @@ export const profileAPI = {
                 return response.data;
             })
     },
-    
+
     getStatus(userId) {
-        return instance.get(`profile/status/${userId}`)
-            // .then(response => {
-            //     return response.data;
-            // })
+        return instance.get(`profile/status/${userId}`);
     },
-    
+
     updateStatus(status) {
-        return instance.put(`profile/status/`, { status: status })
-            // .then(response => {
-            //     return response.data;
-            // })
+        return instance.put(`profile/status/`, { status: status });
     }
 };
 
 export const authAPI = {
-    auth() {
-        return instance.get(`auth/me`)
-            .then(response => {
-                return response.data;
-            })
+    me() {
+        return instance.get(`auth/me`);
+    },
+
+    login(email, password, rememberMe) {
+        return instance.post(`auth/login`, { email, password, rememberMe });
+    },
+
+    logout() {
+        return instance.delete(`auth/login`);
     }
 };

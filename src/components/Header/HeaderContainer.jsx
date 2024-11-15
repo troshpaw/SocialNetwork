@@ -19,7 +19,7 @@ const mapStateToProps = (state) => {
         login: state.auth.login,
         isAuth: state.auth.isAuth
     }
-};
+}
 
 export default compose(
     connect(mapStateToProps, { getAuthUserData })
