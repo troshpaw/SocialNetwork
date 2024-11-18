@@ -6,7 +6,9 @@ const Header = (props) => {
         <header className={style.header}>
             <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/768px-Google_%22G%22_logo.svg.png'></img>
             <div className={style.authUser}>
-                <NavLink to='/login'>{props.isAuth ? props.login : 'Login'}</NavLink>
+                {props.isAuth
+                    ? <div>{props.login} <button onClick={props.logout}>Logout</button></div>
+                    : <NavLink to='/login'>Login</NavLink>}
             </div>
         </header>
     )
