@@ -1,8 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
 import Users from "./Users";
-import { follow, unfollow, getUsers } from "../../redux/users-reducer";
+import { follow, unfollow, requestUsers } from "../../redux/users-reducer";
 import Preloader from "../common/Preloader/Preloader";
+import {
+    getCurrentPage,
+    getFolowingInProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalUsersCount,
+    getUsers
+} from "../../redux/users-selectors";
 
 class UsersContainer extends React.Component {
 
@@ -11,11 +19,11 @@ class UsersContainer extends React.Component {
     // }
 
     componentDidMount() {
-        this.props.getUsers(this.props.pageSize, this.props.currentPage);
+        this.props.requestUsers(this.props.pageSize, this.props.currentPage);
     }
 
     onPageChanged = (pageNumber) => {
-        this.props.getUsers(this.props.pageSize, pageNumber);
+        this.props.requestUsers(this.props.pageSize, pageNumber);
     };
 
     render() {
@@ -36,14 +44,25 @@ class UsersContainer extends React.Component {
     }
 }
 
+// let mapStateToProps = (state) => {
+//     return {
+//         users: state.usersPage.users,
+//         pageSize: state.usersPage.pageSize,
+//         totalUsersCount: state.usersPage.totalUsersCount,
+//         currentPage: state.usersPage.currentPage,
+//         isFetching: state.usersPage.isFetching,
+//         folowingInProgress: state.usersPage.folowingInProgress
+//     };
+// };
+
 let mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        folowingInProgress: state.usersPage.folowingInProgress
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        folowingInProgress: getFolowingInProgress(state)
     };
 };
 
@@ -70,4 +89,4 @@ let mapStateToProps = (state) => {
 //     };
 // };
 
-export default connect(mapStateToProps, { follow, unfollow, getUsers })(UsersContainer);
+export default connect(mapStateToProps, { follow, unfollow, requestUsers })(UsersContainer);
