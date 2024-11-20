@@ -33,6 +33,11 @@ export const initializeApp = () => (dispatch) => {
         dispatch(initializedSuccess());
     })
 
+    // If add setTimeout():
+    // promise.then(setTimeout(() => {
+    //     dispatch(initializedSuccess());
+    // }, 2500));
+
     // If there is more than one promise:
     // Promise.all([promise])
     //     .then(() => {
