@@ -23,26 +23,28 @@ const appReducer = (state = initialState, action) => {
 export const initializedSuccess = () => ({ type: SET_INITIALIZED });
 
 // Thunk creators:
-export const initializeApp = () => (dispatch) => {
-    let promise = dispatch(getAuthUserData());
+export const initializeApp = () => {
+    return (dispatch) => {
+        let promise = dispatch(getAuthUserData());
 
-    // dispatch(somethingelse());
-    // dispatch(somethingelse());
+        // dispatch(somethingelse());
+        // dispatch(somethingelse());
 
-    promise.then(() => {
-        dispatch(initializedSuccess());
-    })
+        promise.then(() => {
+            dispatch(initializedSuccess());
+        })
 
-    // If add setTimeout():
-    // promise.then(setTimeout(() => {
-    //     dispatch(initializedSuccess());
-    // }, 2500));
+        // If add setTimeout():
+        // promise.then(setTimeout(() => {
+        //     dispatch(initializedSuccess());
+        // }, 2500));
 
-    // If there is more than one promise:
-    // Promise.all([promise])
-    //     .then(() => {
-    //         dispatch(initializedSuccess());
-    //     })
+        // If there is more than one promise:
+        // Promise.all([promise])
+        //     .then(() => {
+        //         dispatch(initializedSuccess());
+        //     })
+    }
 }
 
 export default appReducer;
