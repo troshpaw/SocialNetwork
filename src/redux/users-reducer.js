@@ -78,42 +78,43 @@ export const toggleIsFolowingProgress = (isFetching, userId) => ({ type: TOGGLE_
 
 // Thunk creators:
 export const requestUsers = (pageSize, page) => {
-    return (dispatch) => {
-        dispatch(setCurrentPage(page));
+    return async (dispatch) => {
         dispatch(toggleIsFetching(true));
+        dispatch(setCurrentPage(page));
 
-        usersAPI.getUsers(pageSize, page)
-            .then(data => {
-                dispatch(toggleIsFetching(false));
-                dispatch(setUsers(data.items));
-                dispatch(setTotalUsersCount(data.totalCount));
-            })
+        let response = await usersAPI.getUsers(pageSize, page);
+
+        dispatch(toggleIsFetching(false));
+        dispatch(setUsers(response.items));
+        dispatch(setTotalUsersCount(response.totalCount));
     }
 }
 
 export const unfollow = (userId) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(toggleIsFolowingProgress(true, userId));
-        usersAPI.unfollow(userId)
-            .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(unfollowSuccess(userId))
-                }
-                dispatch(toggleIsFolowingProgress(false, userId));
-            })
+
+        let response = await usersAPI.unfollow(userId);
+
+        if (response.resultCode === 0) {
+            dispatch(unfollowSuccess(userId))
+        }
+
+        dispatch(toggleIsFolowingProgress(false, userId));
     }
 }
 
 export const follow = (userId) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(toggleIsFolowingProgress(true, userId));
-        usersAPI.follow(userId)
-            .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(followSuccess(userId))
-                }
-                dispatch(toggleIsFolowingProgress(false, userId));
-            })
+
+        let response = await usersAPI.follow(userId);
+
+        if (response.resultCode === 0) {
+            dispatch(followSuccess(userId))
+        }
+
+        dispatch(toggleIsFolowingProgress(false, userId));
     }
 }
 
