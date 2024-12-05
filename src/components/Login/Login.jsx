@@ -1,5 +1,6 @@
-import { Field, reduxForm } from "redux-form";
-import { Input } from "../common/FormsControls/FormsControls";
+// import { Field } from "redux-form";
+import { reduxForm } from "redux-form";
+import { createField, Input } from "../common/FormsControls/FormsControls";
 import { required } from "../../utils/validators/validators";
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
@@ -9,13 +10,18 @@ import styles from '../common/FormsControls/FormsControls.module.css'
 const LoginForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <div>
+            {createField("email", "Email", Input, [required])}
+            {createField("password", "Password", Input, [required], "password")}
+            {createField("rememberMe", null, "input", [], "checkbox", " remember me")}
+ 
+            {/* <div>
                 <Field
                     name={"email"}
                     placeholder={"Email"}
                     component={Input}
                     validate={[required]} />
             </div>
+            
             <div>
                 <Field
                     name={"password"}
@@ -24,13 +30,15 @@ const LoginForm = (props) => {
                     validate={[required]}
                     type={"password"} />
             </div>
+            
             <div>
                 <Field
                     name={"rememberMe"}
                     component={"input"}
                     type={"checkbox"} />
                 {' remember me'}
-            </div>
+            </div> */}
+            
             {
                 props.error && <div className={styles.formSummaryError}>
                     {props.error}
