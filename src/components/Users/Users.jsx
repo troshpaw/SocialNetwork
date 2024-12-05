@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Users.module.css';
 import userPhoto from './../../assets/images/user.png';
 import { NavLink } from 'react-router-dom';
+import Paginator from './Paginator';
 
 const Users = (props) => {
     let pages = [];
@@ -28,16 +29,9 @@ const Users = (props) => {
         return (
             <div>
                 <div>
-                    {pages.map(page => {
-                        return <span
-                            className={page === props.currentPage ? styles.currentPage : undefined}
-                            onClick={(event) => {
-                                props.onPageChanged(page)
-                            }}>
-                            &nbsp;{page}&nbsp;
-                        </span>
-                    })}
+                    <Paginator pages={pages} currentPage={props.currentPage} onPageChanged={props.onPageChanged} />
                 </div>
+
                 <div>
                     {props.users.map(user =>
                         <div key={user.id} className={styles.userContainer}>
